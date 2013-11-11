@@ -11,6 +11,8 @@ Download all the files in a directory on the same webserver of Tiny Tiny RSS.
 
 On the Tiny Tiny RSS enable the API access.
 
+Create a "Portal" category and add new feeds.
+
 The go to index.html.
 
 End
