@@ -1,0 +1,292 @@
+/* Reset */
+body,img,p,h1,h2,h3,h4,h5,h6,ul,ol {margin:0; padding:0; list-style:none; border:none;}
+/* End Reset */
+body {font-size:0.8em;}
+
+/* Head section */
+#head {
+    height: 100px;
+	clear: both;
+	overflow: auto;
+	width: 100%
+}
+#head h1 {
+    line-height: 100px;
+    text-align: center;
+}
+/* End Head Section */
+
+
+/* entry point */
+#columns, #login, #header, #template, #addwidget {
+	display: none;
+}
+
+/* Header */
+#header {
+	height: 30px;
+}
+
+#header ul {
+	margin: 5px;
+}
+
+#header ul.left {
+	float: left;
+	margin-left: 15px;
+}
+#header ul.right {
+	float: right;
+	margin-right: 15px;
+}
+
+/* Login */
+#login {
+	width: 33.3%;
+	max-width: 500px;
+	height: auto !important;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#login .row {
+	padding: 3px 0px;
+	clear: both;
+}
+
+#login .row.adv {
+	display: none;
+}
+
+#login .widget-content {
+    padding: 0 5px;
+    border-radius-bottomleft: 2px;
+    border-radius-bottomright: 2px;
+}
+
+#login .widget-content label {
+	float: left;
+	width: 100px;
+}
+#login .widget-content input {
+	float: left;
+	width: 160px;
+}
+
+/* Add Widget */
+#addwidget {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 990;
+}
+
+#addwidget .widget  {
+	position: relative;
+	display: block;
+	top: 70px;
+	z-index: 21;
+	width: 50%;
+	margin: 0 auto;
+}
+	
+/* Columns section */
+#columns .column {
+    float: left;
+    width: 33.3%;
+	/* Min-height: */
+	min-height: 400px;
+	height: auto !important; 
+	height: 400px;
+}
+
+/* Column dividers (background-images) : */
+	
+#columns #column1 .widget { margin: 30px 35px 0 25px; }
+#columns #column3 .widget { margin: 30px 25px 0 35px; }
+.widget {
+    margin: 30px 20px 0 20px;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.widget .widget-config {
+    overflow: hidden;
+    line-height: 30px;
+	padding: 2px 10px;
+	display: none;
+}
+.widget .widget-config .color {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+}
+.widget .widget-head {
+    overflow: hidden;
+    height: 30px;
+    line-height: 30px;
+}
+ .widget .widget-head .count {
+    padding: 0 1px;
+	font-weight: bold;
+	font-size: 0.9em;
+	text-decoration: none;
+	vertical-align: top;
+ }
+
+ .widget .widget-head .counter {
+	vertical-align: top;
+ }
+ 
+ .widget .widget-head .title {
+    padding: 0 3px;
+    text-align: left;
+	font-size: 1em;
+	font-weight: bold;
+	vertical-align: top;
+}
+.widget .widget-content {
+    padding: 0 5px;
+    border-radius-bottomleft: 2px;
+    border-radius-bottomright: 2px;
+    line-height: 1.2em;
+    overflow: hidden;
+}
+.widget .widget-content p {
+    padding: 0.8em 0;
+}
+.widget .widget-content img {
+    margin: 10px;
+}
+.widget .widget-content pre {
+    padding: 0.5em 5px;
+    font-size: 12px;
+}
+.widget .widget-content ul {
+    padding: 5px 0 5px 20px;
+}
+.widget .widget-content ul li {padding: 3px 0;}
+.widget .widget-content ul.images {
+    padding: 7px 0 0 0;
+    list-style: none;
+    height: 1%;
+}
+.widget .widget-content ul.images li {
+    display: inline;
+    float: left;
+}
+.widget .widget-content ul.images img {
+    display: inline;
+    float: left;
+    margin: 0 0 7px 7px;
+}
+.widget .widget-edit {
+	display: none
+}
+
+
+.widget.config .widget-config {
+	display: block;
+}
+
+.widget.config .widget-content {
+	display: none
+}
+
+.widget.config .widget-footer {
+	display: none
+}
+
+.widget-head a.remove,
+.widget-head a.collapse,
+.widget-head a.config,
+.widget-head a.expand,
+.widget-head a.edit   {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 8px 4px;
+    text-indent: -9999em;
+    outline: none;
+}
+
+.widget-head a.config,
+.widget-head a.remove {
+    float: right;
+}
+
+/*
+.widget-head a.collapse,
+.widget-head a.expand  {
+    float: left;
+}*/
+
+.widget.collapsed a.collapse {
+	display: none;
+}
+.widget a.expand {
+	display: none;
+}
+
+.widget.collapsed a.expand {
+	display: block;
+}
+
+.widget .widget-footer {
+	clear: both;
+	overflow: auto;
+	width: 100%
+}
+
+.widget .widget-footer .disabled {
+	visibility: hidden;
+}
+
+.widget .widget-footer .prev {
+    float: left;
+	padding-left: 16px;
+	padding-bottom: 4px;
+}
+
+.widget .widget-footer .next {
+    float: right;
+	padding-right: 16px;
+	padding-bottom: 4px;
+}
+
+#column1 .widget-placeholder { margin: 30px 35px 0 25px; }
+#column2 .widget-placeholder { margin: 30px 20px 0 20px; }
+#column3 .widget-placeholder { margin: 30px 25px 0 35px; }
+
+.edit-box {
+    overflow: hidden;
+    margin-bottom: 2px;
+    padding: 10px 0;
+}
+
+.edit-box li.item {
+    padding: 10px 0;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+    clear: both;
+}
+
+
+.edit-box label {
+    float: left;
+    width: 30%;
+    padding: 0 0 0 10px;
+}
+
+.edit-box ul.colors li {
+    width: 20px;
+    height: 20px;
+    float: left;
+    display: inline;
+    margin: 0 5px 0 0;
+    cursor: pointer;
+}
+

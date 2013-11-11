@@ -1,0 +1,140 @@
+body {font-family:Arial,Verdana,Sans-Serif; background: #000; color: #dfdfdf;}
+
+a {color:white;}
+
+
+.color-yellow {background:#f2bc00;}
+.color-red    {background:#dd0000;}
+.color-blue   {background:#148ea4;}
+.color-white  {background:#dfdfdf;}
+.color-orange {background:#f66e00;}
+.color-green  {background:#8dc100;}
+
+
+/* Head section */
+#head {
+    background-color: #000;
+}
+#head h1 {
+    color: #dfdfdf;
+}
+/* End Head Section */
+
+/* Header */
+#header {
+    background-color: #333;
+	border-bottom: 1px solid #666;
+}
+
+#login .widget-content {
+    background: #333 url(img/widget-content-bg.png) repeat-x;
+    color: #DDD;
+}
+
+/* Add Widget */
+#addwidget {
+	color: #222;
+}
+
+/* Column dividers (background-images) : */
+#columns #column1 { background: url(img/column-bg-left.png) no-repeat right top; }
+#columns #column3 { background: url(img/column-bg-right.png) no-repeat left top; }
+	
+.widget .widget-head {
+    color: #000;
+}
+
+.widget .widget-config {
+    background-color: #000;
+    color: #DDD;
+	border-bottom: 1px solid #DDD;
+}
+
+.color-yellow .widget-head .title,
+.color-white .widget-head .title,
+.color-green .widget-head .title {
+	color:#000;
+}
+.color-yellow .widget-head .count,
+.color-white .widget-head .count,
+.color-green .widget-head .count {
+	color: red;
+}
+
+
+.color-red .widget-head .title,
+.color-blue .widget-head .title,
+.color-orange .widget-head .title {
+	color:#FFF;
+}
+	
+	
+.widget .widget-content,
+.widget .widget-footer {
+    background-color: #333;
+    color: #DDD;
+}
+
+
+.widget-head a.remove {
+    background: url(img/remove.png) no-repeat;
+}
+
+.widget-head a.config {
+    background: url(img/config.png) no-repeat;
+}
+
+.widget-head a.edit  {
+	background-position: 0 0;
+}
+
+.widget-head a.collapse  {
+    background: url(img/collapse.png) no-repeat;
+}
+
+.widget-head a.expand  {
+    background: url(img/expand.png) no-repeat;
+}
+
+.widget .widget-content .unread a {
+	color: white;
+}
+.widget .widget-content .read a{
+	color: gray;
+}
+.widget .widget-content p {
+    border-bottom: 1px solid #666;
+}
+.widget .widget-content img {
+    border: 1px solid #FFF;
+}
+.widget .widget-content pre {
+    color: #EEE;
+}
+.widget .widget-content ul {
+    list-style: disc;
+}
+
+.widget .widget-footer .prev {
+	background: url("./img/left.png") no-repeat scroll left top transparent;
+}
+
+.widget .widget-footer .next {
+	background: url("./img/right.png") no-repeat scroll right top transparent;
+}
+
+
+.widget-placeholder { border: 2px dashed #999;}
+
+.edit-box {
+    background: #333 url(img/widget-content-bg.png) repeat-x;
+}
+
+.edit-box label {
+    color: #FFF;
+}
+
+.edit-box ul.colors li {
+    border: 1px solid #EEE;
+}
+

@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Tiny Tiny Portal</title>
+        
+        <link href="basic.css" rel="stylesheet" type="text/css" />
+        <link href="portal.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="header">
+	<ul class="left">
+		<li>
+			<a href="#" id="newwidget">Add widget</a>
+		</li>
+	</ul>
+	<ul class="right">
+		<li>
+			<a href="#" id="logout">Logout</a>
+		</li>
+	</ul>
+</div>
+<div id="head">
+	<h1>Tiny Tiny RSS Portal</h1>
+</div>
+
+<div id="body">
+	<div id="login" class="widget color-blue">
+		<div class="widget-head">
+			<span class="title">Login</span>
+		</div>
+		<div class="widget-content">
+			<form id="loginform" action="#" method="post">
+				<div class="row">
+					<label for="loginlogin">Username:</label>
+					<input name="login" id="loginlogin" class="input" required="1" type="text"/>
+				</div>
+				<div class="row">
+					<label for="loginpassword">Password:</label>
+					<input name="password" id="loginpassword" class="input" required="1" type="password"/>
+				</div>
+				<div class="row adv">
+					<label for="loginpasshost">tt-Rss path:</label>
+					<input name="host" id="loginpasshost" class="input"/>
+				</div>
+				<div class="row noadv" style="text-align : right">
+					<span>
+						<a id="loginadv" href="#">More settings</a>
+					</span>
+				</div>
+				<div class="row" style="text-align : right">
+					<span>
+						<button id="loginbutton">Log in</button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="columns">
+
+		<div id="column1" class="column">
+		</div>
+
+		<div id="column2" class="column">
+		</div>
+		
+		<div id="column3" class="column">
+		</div>
+	</div>
+	<div id="template">
+		<div class="widget">
+			<div class="widget-head">
+				<a href="#collapse" class="collapse">COLLAPSE</a>
+				<a href="#expand"   class="expand">EXPAND</a>
+				<a href="#count"    class="count">(<span class="counter"></span>)</a>
+				<span class="title">Title</span>
+				<a href="#remove"   class="remove">CLOSE</a>
+				<a href="#config"   class="config">CONFIGURE</a>
+			</div>
+			<div class="widget-config">
+				<p class="row">
+					<label>Color:</label>
+					<span class="color color-yellow">&nbsp;</span>
+					<span class="color color-red">&nbsp;</span>
+					<span class="color color-blue">&nbsp;</span>
+					<span class="color color-white">&nbsp;</span>
+					<span class="color color-orange">&nbsp;</span>
+					<span class="color color-green">&nbsp;</span>
+				<p>
+				<p class="row">
+					<label>Items to display:</label>
+					<input type="text"/>
+				<p>
+				<p class="row">
+					<button class="save">Save</button>
+				<p>
+			</div>
+			<div class="widget-content">
+				<ul class="news">
+				</ul>
+			</div>
+			<div class="widget-footer">
+				<a class="prev disabled" href="#prev"><span>newer</span></a>
+				<a class="next" href="#next"><span>older</span></a>
+			</div>
+		</div>
+		<ul class="news">
+			{{#news}}
+				<li class="{{read}}"><a target="_blank" href="{{{link}}}" id="article-{{id}}">{{title}}</a></li>
+			{{/news}}
+		</ul>
+	</div>
+	<div id="addwidget">
+		<div class="widget color-yellow" id="add_widget">  
+			<div class="widget-head">
+				<span class="title">Add a widget</span>
+			</div>
+			<div class="widget-content">
+				<p class="step a">
+					<label for="add-feed">Feed:</label>
+					<select name="add-feed" id="add-feed">
+						<option>Loading...</option>
+					</select>
+				</p>
+				<p class="step e">
+					No new feed found.
+				</p>
+				<div style="text-align : right">
+					<p class="step e">
+						<span>
+							<button class="add-cancel">Cancel</button>
+						</span>
+					</p>
+					<p class="step z">
+						<span>
+							<button class="add-cancel">Cancel</button>
+						</span>
+						<span>
+							<button id="add-submit">Add</button>
+						</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
+<script src="rss.js"></script>
+<script src="portal.js"></script>
+</body>
+</html>
