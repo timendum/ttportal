@@ -14,6 +14,7 @@ var ttPortal = {
 		columns: '.column',
 		widgetSelector: '.widget',
 		handleSelector: '.widget-head',
+		settingSelector: '.widget-config',
 		contentSelector: '.widget-content',
 		footerSelector: '.widget-footer',
 		colorClasses: ['color-yellow', 'color-red', 'color-blue', 'color-white', 'color-orange', 'color-green'],
@@ -141,7 +142,7 @@ var ttPortal = {
 			settings = this.settings;
 		
 		// remove
-		$(settings.columns).on("click", ".widget-head a.remove", function () {
+		$(settings.columns).on("click", settings.handleSelector + " a.remove", function () {
 			if (confirm('This widget will be removed, ok?')) {
 				$(this).closest(settings.widgetSelector).animate({
 					opacity: 0
@@ -157,21 +158,21 @@ var ttPortal = {
 		});
 		
 		// collapse
-		$(settings.columns).on("click", ".widget-head a.collapse", function () {
+		$(settings.columns).on("click", settings.handleSelector + " a.collapse", function () {
 			$(this).closest(settings.widgetSelector).addClass('collapsed')
 				.find(settings.contentSelector).hide();
 			return false;
 		});
-		$(settings.columns).on("click", ".widget-head a.expand", function () {
+		$(settings.columns).on("click", settings.handleSelector + " a.expand", function () {
 			$(this).closest(settings.widgetSelector).removeClass('collapsed')
 				.find(settings.contentSelector).show();
 			return false;
 		});
 		
 		// click count
-		$(settings.columns).on("click", settings.widgetSelector + ' ' + settings.handleSelector + ' .count', function () {
+		$(settings.columns).on("click", settings.handleSelector + ' .count', function () {
 			var count = $(this),
-				widget = count.closest('.widget'),
+				widget = count.closest(settings.widgetSelector),
 				id = widget.attr('id'),
 				counter = widget.find('.counter'),
 				feedId = id.replace(settings.feedIdRe, "");
@@ -194,7 +195,7 @@ var ttPortal = {
 					return;
 				}
 				var link = $(this),
-				widget = link.closest('.widget'),
+				widget = link.closest(settings.widgetSelector),
 				count = widget.find('.counter');
 				
 				rss.markReadItem(
@@ -214,7 +215,7 @@ var ttPortal = {
 			settings.widgetSelector + ' ' + settings.footerSelector + ' .next',
 			function () {
 				var count = $(this),
-					widget = count.closest('.widget'),
+					widget = count.closest(settings.widgetSelector),
 					id = widget.attr('id'),
 					widgetData = widget.data(),
 					position = widgetData.size + widgetData.position;
@@ -228,10 +229,10 @@ var ttPortal = {
 		// prev 
 		$(settings.columns).on(
 			"click",
-			settings.widgetSelector + ' ' + settings.footerSelector + ' .prev',
+			settings.footerSelector + ' .prev',
 			function () {
 				var count = $(this),
-					widget = count.closest('.widget'),
+					widget = count.closest(settings.widgetSelector),
 					id = widget.attr('id'),
 					widgetData = widget.data(),
 					position = widgetData.position - widgetData.size;
@@ -247,9 +248,9 @@ var ttPortal = {
 		// config button
 		$(settings.columns).on(
 			"click",
-			settings.widgetSelector + ' .widget-head .config',
+			settings.handleSelector + ' .config',
 			function () {
-				var widget = $(this).closest('.widget');
+				var widget = $(this).closest(settings.widgetSelector);
 				
 				widget.toggleClass('config');
 				return false;
@@ -258,10 +259,10 @@ var ttPortal = {
 		// config color
 		$(settings.columns).on(
 			"click",
-			settings.widgetSelector + ' .widget-config .color',
+			settings.settingSelector + ' .color',
 			function () {
 				var link = $(this),
-					widget = link.closest('.widget'),
+					widget = link.closest(settings.widgetSelector),
 					color = link.attr('class').split(' ')[1];
 				
 				widget.removeClass(widget.data('color'))
@@ -274,9 +275,9 @@ var ttPortal = {
 		// config save
 		$(settings.columns).on(
 			"click",
-			settings.widgetSelector + ' .widget-config .save',
+			settings.settingSelector + ' .save',
 			function () {
-				var widget = $(this).closest('.widget');
+				var widget = $(this).closest(settings.widgetSelector);
 				widget.toggleClass('config');
 				return false;
 			}
