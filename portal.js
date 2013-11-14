@@ -173,10 +173,11 @@ var ttPortal = {
 			var count = $(this),
 				widget = count.closest('.widget'),
 				id = widget.attr('id'),
+				counter = widget.find('.counter'),
 				feedId = id.replace(settings.feedIdRe, "");
 				
 			rss.markReadFeed(feedId, function() {
-					count.text('(0)');
+					counter.text('0');
 					t.refreshCount();
 					widget.find('li.unread').toggleClass('unread').toggleClass('read');
 				});
@@ -426,6 +427,8 @@ var ttPortal = {
 		rss[refresh](feedId, widgetData.size, widgetData.position, function(data) {
 			var templateData = {};
 			
+			feedId = parseInt(feedId);
+			
 			ul.find('li').remove();
 			templateData.news = [];
 			for (var i=0; i < data.length; i++) {
@@ -446,7 +449,6 @@ var ttPortal = {
 			
 			if (refreshCount) {
 				rss.getFeeds(function (data){
-					feedId = parseInt(feedId);
 					for (var i = 0; i < data.length; i++) {
 						if (data[i].id === feedId) {
 							count.text(data[i].unread);
