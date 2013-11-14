@@ -334,11 +334,11 @@ var ttPortal = {
 			clickLogin = function(event) {
 				event.preventDefault();
 				
-				rss.base = $('#loginpasshost').val();
+				rss.base = $('#login-host').val().replace(/\/$/,'') + '/api/';
 				
 				rss.login(
-					$('#loginlogin').val(),
-					$('#loginpassword').val(),
+					$('#login-username').val(),
+					$('#login-password').val(),
 					function(r) {
 						t.updateState(r);
 						if (r) {
@@ -349,14 +349,14 @@ var ttPortal = {
 				);
 				return false;
 			};
-		$('#loginpasshost').val(base.substring(0, base.lastIndexOf('/') + 1) + 'api/');
-		$('#loginbutton').click(clickLogin);
-		$('#loginadv').click(function() {
+		$('#login-host').val(base.substring(0, base.lastIndexOf('/') + 1));
+		$('#login-button').click(clickLogin);
+		$('#login-adv').click(function() {
 			$('#login .row.noadv').hide();
 			$('#login .row.adv').show();
 			return false;
 		});
-		$('#loginform').submit(clickLogin);
+		$('#login-form').submit(clickLogin);
 	},
 	newsTemplate: null,
 	initLogged: function() {
@@ -478,7 +478,7 @@ var ttPortal = {
 		var t = this,
 			$ = this.jQuery;
 		
-		$('#newwidget').click(function() {
+		$('#new-widget').click(function() {
 			t.loadNewFeeds();
 			$('#addwidget').show();
 			$('#addwidget .step').hide();
