@@ -159,7 +159,7 @@ var ttPortal = {
 		// refresh
 		$(settings.columns).on("click", settings.handleSelector + " a.refresh", function () {
 			var widget = $(this).closest(settings.widgetSelector);
-			t.refreshFeed(widget.attr('id'));
+			t.refreshFeed(widget.attr('id'), true);
 			return false;
 		});
 		
