@@ -156,6 +156,12 @@ var ttPortal = {
 			}
 			return false;
 		});
+		// refresh
+		$(settings.columns).on("click", settings.handleSelector + " a.refresh", function () {
+			var widget = $(this).closest(settings.widgetSelector);
+			t.refreshFeed(widget.attr('id'));
+			return false;
+		});
 		
 		// collapse
 		$(settings.columns).on("click", settings.handleSelector + " a.collapse", function () {

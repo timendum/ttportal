@@ -80,6 +80,10 @@ a {color:white;}
     background: url(img/remove.png) no-repeat;
 }
 
+.widget-head a.refresh {
+    background: url(img/refresh.png) no-repeat;
+}
+
 .widget-head a.config {
     background: url(img/config.png) no-repeat;
 }

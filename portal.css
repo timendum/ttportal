@@ -203,6 +203,7 @@ body {font-size:0.8em;}
 .widget-head a.collapse,
 .widget-head a.config,
 .widget-head a.expand,
+.widget-head a.refresh,
 .widget-head a.edit   {
     display: inline-block;
     width: 16px;
@@ -213,6 +214,7 @@ body {font-size:0.8em;}
 }
 
 .widget-head a.config,
+.widget-head a.refresh,
 .widget-head a.remove {
     float: right;
 }
