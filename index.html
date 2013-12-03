@@ -4,6 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Tiny Tiny Portal</title>
         
+        <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
         <link href="basic.css" rel="stylesheet" type="text/css" />
         <link href="portal.css" rel="stylesheet" type="text/css" />
 </head>
@@ -91,7 +92,14 @@
 				<p>
 				<p class="row">
 					<label>Items to display:</label>
-					<input type="text"/>
+					<input type="text" name="number"/>
+				<p>
+				<p class="row">
+					<label>Type:</label>
+					<select name="type">
+						<option value="normale">Normal</option>
+						<option value="excerpt">With excerpt</option>
+					</select>
 				<p>
 				<p class="row">
 					<button class="save">Save</button>
@@ -106,9 +114,17 @@
 				<a class="next" href="#next"><span>older</span></a>
 			</div>
 		</div>
-		<ul class="news">
+		<ul class="news small">
 			{{#news}}
 				<li class="{{read}}"><a target="_blank" href="{{{link}}}" id="article-{{id}}">{{title}}</a></li>
+			{{/news}}
+		</ul>
+		<ul class="news excerpt">
+			{{#news}}
+				<li class="{{read}}">
+					<a target="_blank" href="{{{link}}}" id="article-{{id}}">{{title}}</a></br>
+					{{{excerpt}}}
+				</li>
 			{{/news}}
 		</ul>
 	</div>

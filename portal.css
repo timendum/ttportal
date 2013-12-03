@@ -32,10 +32,11 @@ body {font-size:0.8em;}
 }
 
 #header ul.left {
-	float: left;
+	display: inline-block;
 	margin-left: 15px;
 }
 #header ul.right {
+	display: inline-block;
 	float: right;
 	margin-right: 15px;
 }
@@ -94,18 +95,18 @@ body {font-size:0.8em;}
 	
 /* Columns section */
 #columns .column {
-    float: left;
-    width: 33.3%;
-	/* Min-height: */
+    display: inline-block;
+    width: 33%;
 	min-height: 400px;
 	height: auto !important; 
 	height: 400px;
+	vertical-align: top
 }
 
 /* Column dividers (background-images) : */
 	
-#columns #column1 .widget { margin: 30px 35px 0 25px; }
-#columns #column3 .widget { margin: 30px 25px 0 35px; }
+/* #columns #column1 .widget { margin: 30px 35px 0 25px; } */
+/* #columns #column3 .widget { margin: 30px 25px 0 35px; } */
 .widget {
     margin: 30px 20px 0 20px;
     padding: 2px;
@@ -123,6 +124,17 @@ body {font-size:0.8em;}
 	width: 15px;
 	height: 15px;
 }
+.widget .widget-config label {
+	display: inline-block;
+	width: 100px;
+}
+.widget .widget-config select,
+.widget .widget-config input {
+	display: inline-block;
+	width: 160px;
+}
+
+
 .widget .widget-head {
     overflow: hidden;
     height: 30px;

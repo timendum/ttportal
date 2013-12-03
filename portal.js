@@ -54,6 +54,7 @@ var ttPortal = {
 	/************** STORAGE ****************/
 	persist: function() {
 		var settings = this.settings,
+			$ = this.jQuery,
 			storage = settings.storage,
 			rss = this.rss;
 		
@@ -62,6 +63,10 @@ var ttPortal = {
 		
 		var widgets = this.getWidgets();
 		storage.setItem("widgets", JSON.stringify(widgets));
+		
+		var pWidth = $('#columns').width();
+		var widths = $(settings.columns + ':not(:last-child)').map(function() {return $(this).width() * 100 / pWidth})
+		storage.setItem("widths", JSON.stringify([widths[0], widths[1]]));
 		
 	},
 	resume: function() {
@@ -284,11 +289,31 @@ var ttPortal = {
 			settings.settingSelector + ' .save',
 			function () {
 				var widget = $(this).closest(settings.widgetSelector);
+				
 				widget.toggleClass('config');
 				return false;
 			}
 		);
 			
+	},
+	makeResizable: function() {
+		var t = this,
+			eNextOW = 0,
+			settings = this.settings,
+			resizableItems = $(settings.columns + ':not(:last-child)');
+		
+		resizableItems.resizable({
+			handles: "e",
+			start: function(event, ui ) {
+				eNextOW = ui.element.next().width();
+			},
+			resize: function(event, ui ) {
+				ui.element.next().width(eNextOW + ui.originalSize.width - ui.size.width);
+			},
+			stop: function(/*event, ui*/) {
+				t.persist();
+			}
+		});
 	},
 	makeSortable : function () {
 		var t = this,
@@ -370,7 +395,7 @@ var ttPortal = {
 			$ = this.jQuery,
 			rss = this.rss;
 		
-		this.newsTemplate = Mustache.compile($('#template > .news').html());
+		this.newsTemplate = Mustache.compile($('#template > .news.small').html());
 		
 		rss.getCategories(function(c) {
 			if (c === 0) {
@@ -443,6 +468,7 @@ var ttPortal = {
 					read: data[i].unread ? "unread" : "read",
 					link: data[i].link,
 					id: data[i].id,
+					excerpt: (data[i].excerpt.trim() || "&nbsp;"),
 					title: data[i].title
 				});
 			}
@@ -501,7 +527,7 @@ var ttPortal = {
 			$('#addwidget').hide();
 		});
 	},
-	addWidget: function(data, column, size, color) {
+	addWidget: function(data, column, size, color, replace) {
 		var t = this,
 			$ = this.jQuery,
 			id = 'feed-' + data.id,
@@ -519,11 +545,29 @@ var ttPortal = {
 		widget.find('.title').text(data.title);
 		widget.find('.counter').text(data.unread);
 		widget.addClass(color);
-		$(settings.columns).eq(column).append(widget);
+		if (!replace) {
+			$(settings.columns).eq(column).append(widget);
+		} else {
+			$(replace).replaceWith(widget);
+		}
 		t.refreshFeed(id);
 		t.refreshCount();
 		t.makeSortable();
+		t.makeResizable();
 		t.persist();
+	},
+	redrawWidget: function(data) {
+		var t = this,
+			$ = this.jQuery,
+			id = 'feed-' + data.id,
+			settings = this.settings,
+			widget = $('#' + id);
+		
+		column = widget.parent().attr('id');
+		size = size || settings.defaultSize;
+		color = color || settings.colorClasses[Math.floor(Math.random() * settings.colorClasses.length)];
+		//widget.data({id: data.id, size: size, position: 0, color: color});
+
 	},
 	loadNewFeeds: function() {
 		var t = this,

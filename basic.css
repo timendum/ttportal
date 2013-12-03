@@ -1,3 +1,7 @@
+/*
+icons from https://www.iconfinder.com/search/?q=iconset%3Aionicons
+*/
+
 body {font-family:Arial,Verdana,Sans-Serif; background: #000; color: #dfdfdf;}
 
 a {color:white;}
@@ -142,3 +146,6 @@ a {color:white;}
     border: 1px solid #EEE;
 }
 
+.ui-resizable-e {
+	background: url("img/gripper.png") no-repeat scroll right 35px transparent;
+}
