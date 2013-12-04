@@ -65,8 +65,8 @@ var ttPortal = {
 		storage.setItem("widgets", JSON.stringify(widgets));
 		
 		var pWidth = $('#columns').width();
-		var widths = $(settings.columns + ':not(:last-child)').map(function() {return $(this).width() * 100 / pWidth})
-		storage.setItem("widths", JSON.stringify([widths[0], widths[1]]));
+		var widths = $(settings.columns).map(function() {return $(this).width() * 100 / pWidth})
+		storage.setItem("widths", JSON.stringify([widths[0], widths[1], widths[2]]));
 		
 	},
 	resume: function() {
@@ -81,6 +81,12 @@ var ttPortal = {
 			storage = settings.storage;
 			
 		return JSON.parse(storage.getItem("widgets")) || [];
+	},
+	resumeWidths: function() {
+		var settings = this.settings,
+			storage = settings.storage;
+		
+		return JSON.parse(storage.getItem("widths")) || [33, 33, 33];
 	},
 	storageToString: function() {
 		var storage = this.settings.storage,
@@ -300,7 +306,8 @@ var ttPortal = {
 		var t = this,
 			eNextOW = 0,
 			settings = this.settings,
-			resizableItems = $(settings.columns + ':not(:last-child)');
+			resizableItems = $(settings.columns + ':not(:last-child)'),
+			resumedWidths = this.resumeWidths();
 		
 		resizableItems.resizable({
 			handles: "e",
@@ -313,6 +320,10 @@ var ttPortal = {
 			stop: function(/*event, ui*/) {
 				t.persist();
 			}
+		});
+		
+		$(settings.columns).each(function(index) {
+			$(this).width(resumedWidths[index] + '%');
 		});
 	},
 	makeSortable : function () {
