@@ -2,7 +2,6 @@
 /* jshint browser: true, jquery: true */
 /* global ttRss, Mustache */
 /*
- * '{"host":"https://www.emetello.com/tt-rss/api/","widgets":"[[109,108],[105],[107,106]]","session":"thsoc5tmh236t3ik86voasc5q0"}'
  * @requires jQuery($), jQuery UI & sortable/draggable UI modules
  */
 var ttPortal = {
@@ -25,6 +24,7 @@ var ttPortal = {
 		this.addWidgetControls();
 		this.initPanel();
 		this.initLogin();
+		this.initHeader();
 		this.initNewWidget();
 	},
 	initPanel: function() {
@@ -52,22 +52,26 @@ var ttPortal = {
 		}
 	},
 	/************** STORAGE ****************/
-	persist: function() {
+	persistSession: function() {
 		var settings = this.settings,
-			$ = this.jQuery,
 			storage = settings.storage,
 			rss = this.rss;
 		
 		storage.setItem("session", rss.session);
 		storage.setItem("host", rss.base);
 		
+		
+	},
+	persistWidget: function() {
+		var settings = this.settings,
+			storage = settings.storage;
+			
 		var widgets = this.getWidgets();
 		storage.setItem("widgets", JSON.stringify(widgets));
 		
 		var pWidth = $('#columns').width();
-		var widths = $(settings.columns).map(function() {return $(this).width() * 100 / pWidth})
+		var widths = $(settings.columns).map(function() {return $(this).width() * 100 / pWidth;});
 		storage.setItem("widths", JSON.stringify([widths[0], widths[1], widths[2]]));
-		
 	},
 	resume: function() {
 		var settings = this.settings,
@@ -161,7 +165,7 @@ var ttPortal = {
 				function () {
 					$(this).wrap('<div/>').parent().slideUp(function () {
 						$(this).remove();
-						t.persist();
+						t.persistWidget();
 					});
 				});
 			}
@@ -285,7 +289,7 @@ var ttPortal = {
 				widget.removeClass(widget.data('color'))
 					.addClass(color)
 					.data('color', color);
-				t.persist();
+				t.persistWidget();
 				return false;
 			}
 		);
@@ -318,7 +322,7 @@ var ttPortal = {
 				ui.element.next().width(eNextOW + ui.originalSize.width - ui.size.width);
 			},
 			stop: function(/*event, ui*/) {
-				t.persist();
+				t.persistWidget();
 			}
 		});
 		
@@ -363,9 +367,62 @@ var ttPortal = {
 			stop: function (e, ui) {
 				$(ui.item).css({width:''}).removeClass('dragging');
 				$(settings.columns).sortable('enable');
-				t.persist();
+				t.persistWidget();
 			}
 		});
+	},
+	/************** HEADER ***************/
+	initHeader: function() {
+		var t = this,
+			rss = t.rss,
+			$ = t.jQuery;
+		
+		/* Export */
+		$('#export').click(function(){
+			$('#textsettings').show();
+			return false;
+		});
+		
+		$('#ts-close').click(function(){
+			$('#textsettings').hide();
+			$('#textsettings textarea').val('');
+			return false;
+		});
+		
+		$('#ts-export').click(function(){
+			$('#textsettings textarea').val(t.storageToString());
+			return false;
+		});
+		
+		$('#ts-import').click(function(){
+			var txt = $('#textsettings textarea').val();
+			if (!txt) {
+				return false;
+			}
+			
+			try {
+				JSON.parse(txt);
+			} catch (e) {
+				alert('Input not valid');
+				return false;
+			}
+			
+			var c = window.confirm('This will overwrite your current settings');
+			if (!c) {
+				return false;
+			}
+			t.resumeString(txt);
+			alert('Settings imported');
+			document.location.reload();
+		});
+		
+		/* Logout */
+		$('#logout').click(function(){
+			rss.logout(function() {
+				document.location.reload();
+			});
+		});
+		
 	},
 	/************** LOGIN ****************/
 	initLogin: function() {
@@ -385,7 +442,7 @@ var ttPortal = {
 						t.updateState(r);
 						if (r) {
 							t.initLogged();
-							t.persist();
+							t.persistSession();
 						}
 					}
 				);
@@ -565,20 +622,7 @@ var ttPortal = {
 		t.refreshCount();
 		t.makeSortable();
 		t.makeResizable();
-		t.persist();
-	},
-	redrawWidget: function(data) {
-		var t = this,
-			$ = this.jQuery,
-			id = 'feed-' + data.id,
-			settings = this.settings,
-			widget = $('#' + id);
-		
-		column = widget.parent().attr('id');
-		size = size || settings.defaultSize;
-		color = color || settings.colorClasses[Math.floor(Math.random() * settings.colorClasses.length)];
-		//widget.data({id: data.id, size: size, position: 0, color: color});
-
+		t.persistWidget();
 	},
 	loadNewFeeds: function() {
 		var t = this,

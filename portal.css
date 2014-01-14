@@ -18,7 +18,7 @@ body {font-size:0.8em;}
 
 
 /* entry point */
-#columns, #login, #header, #template, #addwidget {
+#columns, #login, #header, #template, #addwidget, #textsettings {
 	display: none;
 }
 
@@ -31,9 +31,12 @@ body {font-size:0.8em;}
 	margin: 5px;
 }
 
-#header ul.left {
+#header ul li {
 	display: inline-block;
 	margin-left: 15px;
+}
+#header ul.left {
+	display: inline-block;
 }
 #header ul.right {
 	display: inline-block;
@@ -75,7 +78,7 @@ body {font-size:0.8em;}
 }
 
 /* Add Widget */
-#addwidget {
+.modal {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -84,13 +87,17 @@ body {font-size:0.8em;}
 	z-index: 990;
 }
 
-#addwidget .widget  {
+.modal .widget  {
 	position: relative;
 	display: block;
 	top: 70px;
 	z-index: 21;
 	width: 50%;
 	margin: 0 auto;
+}
+
+/* Export/import settings*/
+#textsettings {
 }
 	
 /* Columns section */
@@ -172,6 +179,12 @@ body {font-size:0.8em;}
 .widget .widget-content img {
     margin: 10px;
 }
+
+.widget .widget-content textarea {
+    display: block;
+	margin: 10px auto;
+}
+
 .widget .widget-content pre {
     padding: 0.5em 5px;
     font-size: 12px;
@@ -273,34 +286,3 @@ body {font-size:0.8em;}
 #column1 .widget-placeholder { margin: 30px 35px 0 25px; }
 #column2 .widget-placeholder { margin: 30px 20px 0 20px; }
 #column3 .widget-placeholder { margin: 30px 25px 0 35px; }
-
-.edit-box {
-    overflow: hidden;
-    margin-bottom: 2px;
-    padding: 10px 0;
-}
-
-.edit-box li.item {
-    padding: 10px 0;
-    overflow: hidden;
-    float: left;
-    width: 100%;
-    clear: both;
-}
-
-
-.edit-box label {
-    float: left;
-    width: 30%;
-    padding: 0 0 0 10px;
-}
-
-.edit-box ul.colors li {
-    width: 20px;
-    height: 20px;
-    float: left;
-    display: inline;
-    margin: 0 5px 0 0;
-    cursor: pointer;
-}
-

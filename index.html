@@ -16,9 +16,8 @@
 		</li>
 	</ul>
 	<ul class="right">
-		<li>
-			<a href="#" id="logout">Logout</a>
-		</li>
+		<li><a href="#" id="export">Export</a></li>
+		<li><a href="#" id="logout">Logout</a></li>
 	</ul>
 </div>
 <div id="head">
@@ -128,7 +127,7 @@
 			{{/news}}
 		</ul>
 	</div>
-	<div id="addwidget">
+	<div id="addwidget" class="modal">
 		<div class="widget color-yellow" id="add_widget">  
 			<div class="widget-head">
 				<span class="title">Add a widget</span>
@@ -155,6 +154,29 @@
 						</span>
 						<span>
 							<button id="add-submit">Add</button>
+						</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="textsettings" class="modal">
+		<div class="widget color-blue" id="text_settings">  
+			<div class="widget-head">
+				<span class="title">Export/import settings</span>
+			</div>
+			<div class="widget-content">
+				<textarea name="textarea" rows="10" cols="50"></textarea>
+				<div>
+					<p class="step">
+						<span>
+							<button id="ts-export">Export</button>
+						</span>
+						<span>
+							<button id="ts-import">Import</button>
+						</span>
+						<span style="text-align : right">
+							<button id="ts-close">Close</button>
 						</span>
 					</p>
 				</div>

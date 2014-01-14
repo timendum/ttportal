@@ -32,6 +32,9 @@ var	ttRss = {
 			};
 		}
 	},
+	_is_cat: function(id) {
+		return parseInt(id) < 100
+	},
 	_request: function(op, c, data, e, s) {
 		var base = this.base;
 		data = data || {};
@@ -88,7 +91,8 @@ var	ttRss = {
 	getFeeds: function(c) {
 		var t = this,
 			w = {
-				cat_id: t.categoryId
+				cat_id: t.categoryId,
+				include_nested: true
 			};
 		t._request('getFeeds', c, w);
 	},
@@ -103,15 +107,17 @@ var	ttRss = {
 		);
 	},
 	getContent: function(id, limit, skip, c) {
+		var is_cat = this._is_cat(id);
 		this._request('getHeadlines', c,
 			{
 				feed_id: id,
+				is_cat: is_cat,
 				limit: limit,
 				skip: skip,
 				show_excerpt: true,
-				show_content: true,
+				//show_content: true,
 				view_mode: 'all_articles', //all_articles, unread, adaptive, marked, updated)
-				//order_by: 'feed_dates'// date_reverse, feed_dates, (nothing)
+				order_by: 'feed_dates'// date_reverse, feed_dates, (nothing)
 
 			}
 		);
@@ -124,6 +130,12 @@ var	ttRss = {
 		});
 	},
 	markReadFeed: function(id, c) {
-		this._request('catchupFeed', c, {feed_id: id});
+		var is_cat = this._is_cat(id);
+		this._request('catchupFeed', c, 
+			{
+				feed_id: id,
+				is_cat: is_cat
+			}
+		);
 	}
 };

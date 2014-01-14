@@ -14,6 +14,9 @@ a {color:white;}
 .color-orange {background:#f66e00;}
 .color-green  {background:#8dc100;}
 
+.modal {
+	background: rgba(100, 100, 100, 0.4);
+}
 
 /* Head section */
 #head {
@@ -30,6 +33,14 @@ a {color:white;}
 	border-bottom: 1px solid #666;
 }
 
+#header #export {
+	display: inline-block;
+    background: url(img/folder.png) no-repeat;
+	height: 16px;
+	text-indent: -9999em;
+	width: 16px;
+}
+
 #login .widget-content {
     background: #333 url(img/widget-content-bg.png) repeat-x;
     color: #DDD;
@@ -37,13 +48,12 @@ a {color:white;}
 
 /* Add Widget */
 #addwidget {
-	color: #222;
 }
 
 /* Column dividers (background-images) : */
 #columns #column1 { background: url(img/column-bg-left.png) no-repeat right top; }
 #columns #column3 { background: url(img/column-bg-right.png) no-repeat left top; }
-	
+
 .widget .widget-head {
     color: #000;
 }
