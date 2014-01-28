@@ -1,4 +1,4 @@
-/* jshint curly: true, eqeqeq: true, forin: true, freeze: true, immed: true, indent: 4, latedef: true, undef: true, unused: true, trailing: true  */
+/* jshint curly: true, eqeqeq: true, forin: true, freeze: true, immed: true, indent: 4, latedef: true, undef: true, unused: true, sub: true, trailing: true  */
 /* jshint browser: true, jquery: true */
 /* global ttRss, Mustache */
 /*
@@ -299,7 +299,7 @@ var ttPortal = {
                     .data('color', color);
                 t.persistWidget();
                 return false;
-            }   
+            }
         );
         // config save
         $(settings.columns).on(
@@ -307,7 +307,7 @@ var ttPortal = {
             settings.settingSelector + ' .save',
             function () {
                 var widget = $(this).closest(settings.widgetSelector),
-                    size = widget.find(settings.settingSelector + ' [name=number]').val();
+                    size = widget.find(settings.settingSelector + ' [name=number]').val(),
                     wClass = widget.find(settings.settingSelector + '  [name=type]').val();
                 
                 size = parseInt(size, 10) || settings.defaultSize;
@@ -642,12 +642,11 @@ var ttPortal = {
             settings = this.settings,
             widget = $('#template .widget')
                 .clone(true)
-                .attr('id', id);
-
-        column = options.column || 0;
-        size = options.size || settings.defaultSize;
-        color = options.color || settings.colorClasses[Math.floor(Math.random() * settings.colorClasses.length)];
-        widgetClass = options.type || settings.defaultWidgetClass;
+                .attr('id', id),
+            column = options.column || 0,
+            size = options.size || settings.defaultSize,
+            color = options.color || settings.colorClasses[Math.floor(Math.random() * settings.colorClasses.length)],
+            widgetClass = options.type || settings.defaultWidgetClass;
             
         widget.data({id: data.id, size: size, position: 0, color: color, type: widgetClass});
         

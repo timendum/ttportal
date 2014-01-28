@@ -1,6 +1,6 @@
-/* jshint curly: true, eqeqeq: true, forin: true, freeze: true, immed: true, indent: 4, latedef: true, undef: true, unused: true, trailing: true, sub: true  */
+/* jshint curly: true, eqeqeq: true, forin: true, freeze: true, immed: true, indent: 4, latedef: true, undef: true, unused: true, sub: true, trailing: true  */
 /* jshint browser: true, jquery: true */
-var    ttRss = {
+var ttRss = {
     base: null,
     session: null,
     categoryId: null,
@@ -33,7 +33,7 @@ var    ttRss = {
         }
     },
     _is_cat: function(id) {
-        return parseInt(id) < 100
+        return parseInt(id) < 100;
     },
     _request: function(op, c, data, e, s) {
         var base = this.base;
@@ -131,7 +131,7 @@ var    ttRss = {
     },
     markReadFeed: function(id, c) {
         var is_cat = this._is_cat(id);
-        this._request('catchupFeed', c, 
+        this._request('catchupFeed', c,
             {
                 feed_id: id,
                 is_cat: is_cat
