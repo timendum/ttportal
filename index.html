@@ -96,7 +96,7 @@
 				<p class="row">
 					<label>Type:</label>
 					<select name="type">
-						<option value="normale">Normal</option>
+						<option value="small">Normal</option>
 						<option value="excerpt">With excerpt</option>
 					</select>
 				<p>
@@ -113,16 +113,16 @@
 				<a class="next" href="#next"><span>older</span></a>
 			</div>
 		</div>
-		<ul class="news small">
+		<ul class="news t-small">
 			{{#news}}
 				<li class="{{read}}"><a target="_blank" href="{{{link}}}" id="article-{{id}}">{{title}}</a></li>
 			{{/news}}
 		</ul>
-		<ul class="news excerpt">
+		<ul class="news t-excerpt">
 			{{#news}}
 				<li class="{{read}}">
 					<a target="_blank" href="{{{link}}}" id="article-{{id}}">{{title}}</a></br>
-					{{{excerpt}}}
+					<div class="excerpt">{{{excerpt}}}</div>
 				</li>
 			{{/news}}
 		</ul>

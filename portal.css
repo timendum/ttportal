@@ -173,6 +173,9 @@ body {font-size:0.8em;}
     line-height: 1.2em;
     overflow: hidden;
 }
+.widget .widget-content .excerpt {
+	font-size: 80%;
+}
 .widget .widget-content p {
     padding: 0.8em 0;
 }

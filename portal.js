@@ -17,7 +17,8 @@ var ttPortal = {
         contentSelector: '.widget-content',
         footerSelector: '.widget-footer',
         colorClasses: ['color-yellow', 'color-red', 'color-blue', 'color-white', 'color-orange', 'color-green'],
-        defaultSize: 10
+        defaultSize: 10,
+        defaultWidgetClass: 'small'
     },
     init: function() {
         this.resume();
@@ -122,11 +123,14 @@ var ttPortal = {
         $(settings.columns).each(function(c){
             w = [];
             $(this).find(settings.widgetSelector).each(function(r){
-                var widgetData = $(this).data();
+                var widget = $(this),
+                    widgetData = widget.data();
+                
                 w[r] = {
                     id: widgetData.id,
                     size: widgetData.size,
                     position: widgetData.position,
+                    type: widgetData.type,
                     color: widgetData.color
                 };
             });
@@ -271,7 +275,11 @@ var ttPortal = {
             "click",
             settings.handleSelector + ' .config',
             function () {
-                var widget = $(this).closest(settings.widgetSelector);
+                var widget = $(this).closest(settings.widgetSelector),
+                    widgetData = widget.data();
+                
+                widget.find(settings.settingSelector + ' [name=number]').val(widgetData.size);
+                widget.find(settings.settingSelector + '  [name=type]').val(widgetData.type);
                 
                 widget.toggleClass('config');
                 return false;
@@ -291,16 +299,27 @@ var ttPortal = {
                     .data('color', color);
                 t.persistWidget();
                 return false;
-            }
+            }   
         );
         // config save
         $(settings.columns).on(
             "click",
             settings.settingSelector + ' .save',
             function () {
-                var widget = $(this).closest(settings.widgetSelector);
+                var widget = $(this).closest(settings.widgetSelector),
+                    size = widget.find(settings.settingSelector + ' [name=number]').val();
+                    wClass = widget.find(settings.settingSelector + '  [name=type]').val();
+                
+                size = parseInt(size, 10) || settings.defaultSize;
+                
+                widget.data({size: size, position: 0, type: wClass});
+                
+                widget.find('.news').attr('class', 'news').addClass('t-' + wClass);
                 
                 widget.toggleClass('config');
+                
+                t.persistWidget();
+                t.refreshFeed(widget.attr('id'));
                 return false;
             }
         );
@@ -457,13 +476,14 @@ var ttPortal = {
         });
         $('#login-form').submit(clickLogin);
     },
-    newsTemplate: null,
+    newsTemplate: {},
     initLogged: function() {
         var t = this,
             $ = this.jQuery,
             rss = this.rss;
         
-        this.newsTemplate = Mustache.compile($('#template > .news.small').html());
+        this.newsTemplate['small'] = Mustache.compile($('#template > .news.t-small').html());
+        this.newsTemplate['excerpt'] = Mustache.compile($('#template > .news.t-excerpt').html());
         
         rss.getCategories(function(c) {
             if (c === 0) {
@@ -478,7 +498,15 @@ var ttPortal = {
                     for (var r = 0; r < widgets[c].length; r++) {
                         for (var i = 0; i < data.length; i++) {
                             if (data[i].id === widgets[c][r].id) {
-                                t.addWidget(data[i], c, widgets[c][r].size, widgets[c][r].color);
+                                t.addWidget(
+                                    data[i],
+                                    {
+                                        column: c,
+                                        type: widgets[c][r].type,
+                                        size: widgets[c][r].size,
+                                        color: widgets[c][r].color
+                                    }
+                                );
                                 break;
                             }
                         }
@@ -515,6 +543,7 @@ var ttPortal = {
             widgetData = widget.data(),
             count =  widget.find('.counter'),
             ul =  widget.find('.news'),
+            wClass = settings.defaultWidgetClass,
             refresh = null;
         
         refresh = force ? 'getUpdatedContent' : 'getContent';
@@ -523,6 +552,17 @@ var ttPortal = {
         } else {
             refreshCount = true;
         }
+        
+        $.each(
+            ul.attr('class').split(' '),
+            function (index, value) {
+                if (value.indexOf('t-') === 0) {
+                    wClass = value.substring(2);
+                    return false;
+                }
+            }
+        );
+        
         
         rss[refresh](feedId, widgetData.size, widgetData.position, function(data) {
             var templateData = {};
@@ -540,7 +580,7 @@ var ttPortal = {
                     title: data[i].title
                 });
             }
-            ul.append(t.newsTemplate(templateData));
+            ul.append(t.newsTemplate[wClass](templateData));
             
             if (widgetData.position > 0) {
                 widget.find(settings.footerSelector).find('.disabled').removeClass('disabled');
@@ -551,7 +591,7 @@ var ttPortal = {
             if (refreshCount) {
                 rss.getFeeds(function (data){
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i].id === feedId) {
+                        if (parseInt(data[i].id) === feedId) {
                             count.text(data[i].unread);
                             t.refreshCount();
                             break;
@@ -595,7 +635,7 @@ var ttPortal = {
             $('#addwidget').hide();
         });
     },
-    addWidget: function(data, column, size, color, replace) {
+    addWidget: function(data, options, replace) {
         var t = this,
             $ = this.jQuery,
             id = 'feed-' + data.id,
@@ -603,15 +643,17 @@ var ttPortal = {
             widget = $('#template .widget')
                 .clone(true)
                 .attr('id', id);
-                
-        column = column || 0;
-        size = size || settings.defaultSize;
-        color = color || settings.colorClasses[Math.floor(Math.random() * settings.colorClasses.length)];
-        
-        widget.data({id: data.id, size: size, position: 0, color: color});
+
+        column = options.column || 0;
+        size = options.size || settings.defaultSize;
+        color = options.color || settings.colorClasses[Math.floor(Math.random() * settings.colorClasses.length)];
+        widgetClass = options.type || settings.defaultWidgetClass;
+            
+        widget.data({id: data.id, size: size, position: 0, color: color, type: widgetClass});
         
         widget.find('.title').text(data.title);
         widget.find('.counter').text(data.unread);
+        widget.find('.news').addClass('t-' + widgetClass);
         widget.addClass(color);
         if (!replace) {
             $(settings.columns).eq(column).append(widget);

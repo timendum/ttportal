@@ -120,6 +120,12 @@ a {color:white;}
 .widget .widget-content .read a{
 	color: gray;
 }
+.widget .widget-content .unread .excerpt {
+	color: #AAA;
+}
+.widget .widget-content .read .excerpt {
+	color: #666;
+}
 .widget .widget-content p {
     border-bottom: 1px solid #666;
 }
