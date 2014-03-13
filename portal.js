@@ -647,7 +647,10 @@ var ttPortal = {
             size = options.size || settings.defaultSize,
             color = options.color || settings.colorClasses[Math.floor(Math.random() * settings.colorClasses.length)],
             widgetClass = options.type || settings.defaultWidgetClass;
-            
+        
+        if ($('#' + id).length > 0 ) {
+            return;
+        }
         widget.data({id: data.id, size: size, position: 0, color: color, type: widgetClass});
         
         widget.find('.title').text(data.title);
