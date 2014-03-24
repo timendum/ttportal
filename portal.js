@@ -637,7 +637,8 @@ var ttPortal = {
     },
     addWidget: function(data, options, replace) {
         var t = this,
-            $ = this.jQuery,
+            $ = this.jQuery
+            options = options || {},
             id = 'feed-' + data.id,
             settings = this.settings,
             widget = $('#template .widget')
