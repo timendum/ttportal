@@ -175,6 +175,7 @@ body {font-size:0.8em;}
 }
 .widget .widget-content .excerpt {
 	font-size: 80%;
+	margin-left: 12px;
 }
 .widget .widget-content p {
     padding: 0.8em 0;
@@ -195,7 +196,14 @@ body {font-size:0.8em;}
 .widget .widget-content ul {
     padding: 5px 0 5px 20px;
 }
-.widget .widget-content ul li {padding: 3px 0;}
+.widget .widget-content ul li {
+	list-style-position: inside;
+	margin-left: -10px;
+	overflow: hidden;
+	padding: 3px 0;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 .widget .widget-content ul.images {
     padding: 7px 0 0 0;
     list-style: none;

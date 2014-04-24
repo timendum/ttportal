@@ -115,13 +115,13 @@
 		</div>
 		<ul class="news t-small">
 			{{#news}}
-				<li class="{{read}}"><a target="_blank" href="{{{link}}}" id="article-{{id}}">{{title}}</a></li>
+				<li class="{{read}}"><a target="_blank" href="{{{link}}}" id="article-{{id}}" title="{{{excerpt}}}">{{title}}</a></li>
 			{{/news}}
 		</ul>
 		<ul class="news t-excerpt">
 			{{#news}}
 				<li class="{{read}}">
-					<a target="_blank" href="{{{link}}}" id="article-{{id}}">{{title}}</a></br>
+					<a target="_blank" href="{{{link}}}" id="article-{{id}}" title="{{{title}}}">{{title}}</a></br>
 					<div class="excerpt">{{{excerpt}}}</div>
 				</li>
 			{{/news}}
