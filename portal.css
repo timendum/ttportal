@@ -160,7 +160,7 @@ body {font-size:0.8em;}
  }
  
  .widget .widget-head .title {
-    padding: 0 3px;
+    padding: 0;
     text-align: left;
 	font-size: 1em;
 	font-weight: bold;
