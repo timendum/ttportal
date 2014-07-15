@@ -451,7 +451,6 @@ var ttPortal = {
         var t = this,
             $ = t.jQuery,
             rss = t.rss,
-            base = location.toString(),
             clickLogin = function(event) {
                 event.preventDefault();
                 
@@ -470,7 +469,7 @@ var ttPortal = {
                 );
                 return false;
             };
-        $('#login-host').val(base.substring(0, base.lastIndexOf('/') + 1));
+        $('#login-host').val(location.protocol + "//" + location.hostname + ":" + location.port + '/tt-rss');
         $('#login-button').click(clickLogin);
         $('#login-adv').click(function() {
             $('#login .row.noadv').hide();
