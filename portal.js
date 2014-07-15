@@ -226,9 +226,12 @@ var ttPortal = {
                 rss.markReadItem(
                     this.id.replace(/^article-/, ""),
                     function (/*data*/) {
-                        link.closest('li.unread').toggleClass('unread').toggleClass('read');
-                        count.text(parseInt(count.text()) - 1);
-                        t.refreshCount();
+                        var li = link.closest('li');
+                        if (li.hasClass('unread')) {
+                            li.removeClass('unread').addClass('read');
+                            count.text(parseInt(count.text()) - 1);
+                            t.refreshCount();
+                        }
                     }
                 );
             }
