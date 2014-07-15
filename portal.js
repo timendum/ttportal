@@ -639,17 +639,22 @@ var ttPortal = {
     },
     addWidget: function(data, options, replace) {
         var t = this,
-            $ = this.jQuery
-            options = options || {},
+            $ = this.jQuery,
             id = 'feed-' + data.id,
             settings = this.settings,
             widget = $('#template .widget')
                 .clone(true)
                 .attr('id', id),
-            column = options.column || 0,
-            size = options.size || settings.defaultSize,
-            color = options.color || settings.colorClasses[Math.floor(Math.random() * settings.colorClasses.length)],
-            widgetClass = options.type || settings.defaultWidgetClass;
+            size = 0,
+            column = 0,
+            color = '',
+            widgetClass = '';
+        
+        options = options || {};
+        column = options.column || column;
+        size = options.size || settings.defaultSize;
+        color = options.color || settings.colorClasses[Math.floor(Math.random() * settings.colorClasses.length)];
+        widgetClass = options.type || settings.defaultWidgetClass;
         
         if ($('#' + id).length > 0 ) {
             return;
