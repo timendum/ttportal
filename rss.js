@@ -106,8 +106,9 @@ var ttRss = {
             {feed_id: id}
         );
     },
-    getContent: function(id, limit, skip, c) {
+    getContent: function(id, limit, skip, c, onlyUnread) {
         var is_cat = this._is_cat(id);
+        onlyUnread = onlyUnread || false;
         this._request('getHeadlines', c,
             {
                 feed_id: id,
@@ -116,7 +117,7 @@ var ttRss = {
                 skip: skip,
                 show_excerpt: true,
                 //show_content: true,
-                view_mode: 'all_articles', //all_articles, unread, adaptive, marked, updated)
+                view_mode: (onlyUnread ? 'unread' :'all_articles'), //all_articles, unread, adaptive, marked, updated)
                 order_by: 'feed_dates'// date_reverse, feed_dates, (nothing)
 
             }
