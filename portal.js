@@ -229,7 +229,7 @@ var ttPortal = {
                         var li = link.closest('li');
                         if (li.hasClass('unread')) {
                             li.removeClass('unread').addClass('read');
-                            count.text(parseInt(count.text()) - 1);
+                            count.text(Math.max(parseInt(count.text()) - 1) , 0);
                             t.refreshCount();
                         }
                     }
