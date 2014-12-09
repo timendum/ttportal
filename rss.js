@@ -116,6 +116,7 @@ var ttRss = {
                 limit: limit,
                 skip: skip,
                 show_excerpt: true,
+                excerpt_length: 100,
                 //show_content: true,
                 view_mode: (onlyUnread ? 'unread' :'all_articles'), //all_articles, unread, adaptive, marked, updated)
                 order_by: 'feed_dates'// date_reverse, feed_dates, (nothing)
