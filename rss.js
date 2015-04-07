@@ -62,13 +62,23 @@ var ttRss = {
                 t.session = data.session_id;
                 c(true);
             } else {
+                t.session = false;
                 c(false);
             }
         };
     },
     login: function(user, pass, c) {
         var lh = this._loginHandler;
-        this._request('login', lh(c, this), {user: user, password: pass});
+        var t = this;
+        var loginError = function () {
+            if (t.session) {
+            t.session = null;
+                alert('Error for session, retry');
+            } else {
+                t.sessionErrorHandler();
+            }
+        };
+        this._request('login', lh(c, this), {user: user, password: pass}, loginError);
     },
     logout: function(c) {
         this._request('logout', c);
