@@ -72,7 +72,7 @@ var ttRss = {
         var t = this;
         var loginError = function () {
             if (t.session) {
-            t.session = null;
+                t.session = null;
                 alert('Error for session, retry');
             } else {
                 t.sessionErrorHandler();
