@@ -184,13 +184,15 @@ var ttPortal = {
         
         // collapse
         $(settings.columns).on("click", settings.handleSelector + " a.collapse", function () {
-            $(this).closest(settings.widgetSelector).addClass('collapsed')
-                .find(settings.contentSelector).hide();
+           var widget =  $(this).closest(settings.widgetSelector).addClass('collapsed');
+           widget.find(settings.contentSelector).hide();
+           widget.find(settings.footerSelector).hide();
             return false;
         });
         $(settings.columns).on("click", settings.handleSelector + " a.expand", function () {
-            $(this).closest(settings.widgetSelector).removeClass('collapsed')
-                .find(settings.contentSelector).show();
+            var widget = $(this).closest(settings.widgetSelector).removeClass('collapsed');
+            widget.find(settings.contentSelector).show();
+            widget.find(settings.footerSelector).hide();
             return false;
         });
         
