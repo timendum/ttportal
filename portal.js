@@ -484,8 +484,10 @@ var ttPortal = {
             $ = this.jQuery,
             rss = this.rss;
         
-        this.newsTemplate['small'] = Mustache.compile($('#template > .news.t-small').html());
-        this.newsTemplate['excerpt'] = Mustache.compile($('#template > .news.t-excerpt').html());
+        this.newsTemplate['small'] = $('#template > .news.t-small').html();
+        Mustache.parse(this.newsTemplate['small']);
+        this.newsTemplate['excerpt'] = $('#template > .news.t-excerpt').html();
+        Mustache.parse(this.newsTemplate['excerpt']);
         
         rss.getCategories(function(c) {
             if (c === 0) {
@@ -582,7 +584,7 @@ var ttPortal = {
                     title: data[i].title
                 });
             }
-            ul.append(t.newsTemplate[wClass](templateData));
+            ul.append(Mustache.render(t.newsTemplate[wClass], templateData));
             
             if (widgetData.position > 0) {
                 widget.find(settings.footerSelector).find('.disabled').removeClass('disabled');

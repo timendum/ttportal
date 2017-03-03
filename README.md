@@ -31,6 +31,6 @@ The main javascript stuff is in the `portal.js`, plus a `rss.js` where the API a
 
 
 ### Dependencies ###
-* jQuery 2
-* jQuery UI 1.10
-* Mustache 0.7
+* jQuery 3
+* jQuery UI 1.12
+* Mustache 2
