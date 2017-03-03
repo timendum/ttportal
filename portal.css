@@ -6,9 +6,9 @@ body {font-size:0.8em;}
 /* Head section */
 #head {
     height: 100px;
-	clear: both;
-	overflow: auto;
-	width: 100%
+    clear: both;
+    overflow: auto;
+    width: 100%
 }
 #head h1 {
     line-height: 100px;
@@ -19,47 +19,47 @@ body {font-size:0.8em;}
 
 /* entry point */
 #columns, #login, #header, #template, #addwidget, #textsettings {
-	display: none;
+    display: none;
 }
 
 /* Header */
 #header {
-	height: 30px;
+    height: 30px;
 }
 
 #header ul {
-	margin: 5px;
+    margin: 5px;
 }
 
 #header ul li {
-	display: inline-block;
-	margin-left: 15px;
+    display: inline-block;
+    margin-left: 15px;
 }
 #header ul.left {
-	display: inline-block;
+    display: inline-block;
 }
 #header ul.right {
-	display: inline-block;
-	float: right;
-	margin-right: 15px;
+    display: inline-block;
+    float: right;
+    margin-right: 15px;
 }
 
 /* Login */
 #login {
-	width: 33.3%;
-	max-width: 500px;
-	height: auto !important;
-	margin-left: auto;
-	margin-right: auto;
+    width: 33.3%;
+    max-width: 500px;
+    height: auto !important;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #login .row {
-	padding: 3px 0px;
-	clear: both;
+    padding: 3px 0px;
+    clear: both;
 }
 
 #login .row.adv {
-	display: none;
+    display: none;
 }
 
 #login .widget-content {
@@ -69,49 +69,49 @@ body {font-size:0.8em;}
 }
 
 #login .widget-content label {
-	float: left;
-	width: 100px;
+    float: left;
+    width: 100px;
 }
 #login .widget-content input {
-	float: left;
-	width: 160px;
+    float: left;
+    width: 160px;
 }
 
 /* Add Widget */
 .modal {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 990;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 990;
 }
 
 .modal .widget  {
-	position: relative;
-	display: block;
-	top: 70px;
-	z-index: 21;
-	width: 50%;
-	margin: 0 auto;
+    position: relative;
+    display: block;
+    top: 70px;
+    z-index: 21;
+    width: 50%;
+    margin: 0 auto;
 }
 
 /* Export/import settings*/
 #textsettings {
 }
-	
+    
 /* Columns section */
 #columns .column {
     display: inline-block;
     width: 33%;
-	min-height: 400px;
-	height: auto !important; 
-	height: 400px;
-	vertical-align: top
+    min-height: 400px;
+    height: auto !important; 
+    height: 400px;
+    vertical-align: top
 }
 
 /* Column dividers (background-images) : */
-	
+    
 /* #columns #column1 .widget { margin: 30px 35px 0 25px; } */
 /* #columns #column3 .widget { margin: 30px 25px 0 35px; } */
 .widget {
@@ -123,22 +123,22 @@ body {font-size:0.8em;}
 .widget .widget-config {
     overflow: hidden;
     line-height: 30px;
-	padding: 2px 10px;
-	display: none;
+    padding: 2px 10px;
+    display: none;
 }
 .widget .widget-config .color {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
 }
 .widget .widget-config label {
-	display: inline-block;
-	width: 100px;
+    display: inline-block;
+    width: 100px;
 }
 .widget .widget-config select,
 .widget .widget-config input {
-	display: inline-block;
-	width: 160px;
+    display: inline-block;
+    width: 160px;
 }
 
 
@@ -149,22 +149,22 @@ body {font-size:0.8em;}
 }
  .widget .widget-head .count {
     padding: 0 1px;
-	font-weight: bold;
-	font-size: 0.9em;
-	text-decoration: none;
-	vertical-align: top;
+    font-weight: bold;
+    font-size: 0.9em;
+    text-decoration: none;
+    vertical-align: top;
  }
 
  .widget .widget-head .counter {
-	vertical-align: top;
+    vertical-align: top;
  }
  
  .widget .widget-head .title {
     padding: 0;
     text-align: left;
-	font-size: 1em;
-	font-weight: bold;
-	vertical-align: top;
+    font-size: 1em;
+    font-weight: bold;
+    vertical-align: top;
 }
 .widget .widget-content {
     padding: 0 5px;
@@ -174,8 +174,8 @@ body {font-size:0.8em;}
     overflow: hidden;
 }
 .widget .widget-content .excerpt {
-	font-size: 80%;
-	margin-left: 12px;
+    font-size: 80%;
+    margin-left: 12px;
 }
 .widget .widget-content p {
     padding: 0.8em 0;
@@ -186,7 +186,7 @@ body {font-size:0.8em;}
 
 .widget .widget-content textarea {
     display: block;
-	margin: 10px auto;
+    margin: 10px auto;
 }
 
 .widget .widget-content pre {
@@ -197,12 +197,12 @@ body {font-size:0.8em;}
     padding: 5px 0 5px 20px;
 }
 .widget .widget-content ul li {
-	list-style-position: inside;
-	margin-left: -10px;
-	overflow: hidden;
-	padding: 3px 0;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+    list-style-position: inside;
+    margin-left: -10px;
+    overflow: hidden;
+    padding: 3px 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .widget .widget-content ul.images {
     padding: 7px 0 0 0;
@@ -219,20 +219,20 @@ body {font-size:0.8em;}
     margin: 0 0 7px 7px;
 }
 .widget .widget-edit {
-	display: none
+    display: none
 }
 
 
 .widget.config .widget-config {
-	display: block;
+    display: block;
 }
 
 .widget.config .widget-content {
-	display: none
+    display: none
 }
 
 .widget.config .widget-footer {
-	display: none
+    display: none
 }
 
 .widget-head a.remove,
@@ -262,36 +262,36 @@ body {font-size:0.8em;}
 }*/
 
 .widget.collapsed a.collapse {
-	display: none;
+    display: none;
 }
 .widget a.expand {
-	display: none;
+    display: none;
 }
 
 .widget.collapsed a.expand {
-	display: inline-block;
+    display: inline-block;
 }
 
 .widget .widget-footer {
-	clear: both;
-	overflow: auto;
-	width: 100%
+    clear: both;
+    overflow: auto;
+    width: 100%
 }
 
 .widget .widget-footer .disabled {
-	visibility: hidden;
+    visibility: hidden;
 }
 
 .widget .widget-footer .prev {
     float: left;
-	padding-left: 16px;
-	padding-bottom: 4px;
+    padding-left: 16px;
+    padding-bottom: 4px;
 }
 
 .widget .widget-footer .next {
     float: right;
-	padding-right: 16px;
-	padding-bottom: 4px;
+    padding-right: 16px;
+    padding-bottom: 4px;
 }
 
 #column1 .widget-placeholder { margin: 30px 35px 0 25px; }
