@@ -269,7 +269,7 @@ body {font-size:0.8em;}
 }
 
 .widget.collapsed a.expand {
-	display: block;
+	display: inline-block;
 }
 
 .widget .widget-footer {
