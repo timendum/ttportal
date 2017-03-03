@@ -562,7 +562,7 @@ var ttPortal = {
                     wClass = value.substring(2);
                     return false;
                 }
-                return false;
+                return true;
             }
         );
 
