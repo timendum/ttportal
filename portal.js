@@ -192,7 +192,7 @@ var ttPortal = {
         $(settings.columns).on("click", settings.handleSelector + " a.expand", function () {
             var widget = $(this).closest(settings.widgetSelector).removeClass('collapsed');
             widget.find(settings.contentSelector).show();
-            widget.find(settings.footerSelector).hide();
+            widget.find(settings.footerSelector).show();
             return false;
         });
         
