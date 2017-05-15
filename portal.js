@@ -448,6 +448,7 @@ var ttPortal = {
     /* ************* LOGIN *************** */
     initLogin: function () {
         var t = this,
+            basePath = (function(a){a.splice(a.indexOf("ttportal")); return a.join("/")})(document.location.pathname.split("/")),
             $ = t.jQuery,
             rss = t.rss,
             clickLogin = function (event) {
@@ -468,7 +469,7 @@ var ttPortal = {
                 );
                 return false;
             };
-        $('#login-host').val(location.protocol + "//" + location.hostname + ":" + location.port + '/tt-rss');
+        $('#login-host').val(location.protocol + "//" + location.hostname + ":" + location.port + "/" + basePath);
         $('#login-button').click(clickLogin);
         $('#login-adv').click(function () {
             $('#login .row.noadv').hide();
