@@ -609,7 +609,8 @@ var ttPortal = {
         });
     },
     refreshCount: function () {
-        var c = 0,
+        var t = this,
+            c = 0,
             $ = this.jQuery,
             settings = this.settings;
 
@@ -619,6 +620,40 @@ var ttPortal = {
             }
         );
         document.title = 'Tiny Tiny Portal (' + c + ')';
+        t.refreshIcon(c);
+    },
+    refreshIcon: function (c) {
+        var link = document.querySelector('link[type="image/x-icon"]');
+        if (!link.dataset.originalUrl) {
+            link.dataset.originalUrl = link.href;
+        }
+        if (c < 1) {
+            link.href = link.dataset.originalUrl;
+            return;
+        }
+        if (c > 99) {
+            c = 99;
+        }
+        var canvas = document.getElementById('faviconc');
+        canvas.width = 32;
+        canvas.height = 32;
+        var ctx = canvas.getContext('2d');
+        var img = new Image();
+        img.src = './img/faviconblank.png';
+        img.onload = function () {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0);
+            ctx.fillStyle = '#FFF';
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.strokeStyle = '#8B0000';
+            ctx.font = 'bold 21px sans-serif';
+            ctx.lineWidth = 4;
+            ctx.strokeText(c, 16, 18);
+            ctx.fillText(c, 16, 18);
+
+            link.href = canvas.toDataURL("image/x-icon");
+        };
     },
     /* *********** ADD NEW WIDGET *************** */
     initNewWidget: function () {
