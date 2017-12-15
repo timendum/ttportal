@@ -632,7 +632,7 @@ var ttPortal = {
             return;
         }
         if (c > 99) {
-            c = 99;
+            c = '\u221E';
         }
         var canvas = document.getElementById('faviconc');
         canvas.width = 32;
