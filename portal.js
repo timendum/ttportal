@@ -14,7 +14,9 @@ var ttPortal = {
         settingSelector: '.widget-config',
         contentSelector: '.widget-content',
         footerSelector: '.widget-footer',
-        colorClasses: ['color-yellow', 'color-red', 'color-blue', 'color-white', 'color-orange', 'color-green'],
+        colorClasses: [
+            'color-yellow', 'color-red', 'color-blue', 'color-white', 'color-orange', 'color-green'
+        ],
         defaultSize: 10,
         defaultWidgetClass: 'small'
     },
@@ -150,7 +152,9 @@ var ttPortal = {
     getWidgetSettings: function (id) {
         var $ = this.jQuery,
             settings = this.settings;
-        return (id && settings.widgetIndividual[id]) ? $.extend({}, settings.widgetDefault, settings.widgetIndividual[id]) : settings.widgetDefault;
+        return (id && settings.widgetIndividual[id]) ?
+            $.extend({}, settings.widgetDefault, settings.widgetIndividual[id]) :
+            settings.widgetDefault;
     },
     addWidgetControls: function () {
         var t = this,
@@ -492,7 +496,9 @@ var ttPortal = {
             a.splice(a.indexOf("ttportal"));
             return a.join("/");
         })(document.location.pathname.split("/"));
-        $('#login-host').val(location.protocol + "//" + location.hostname + ":" + location.port + "/" + basePath);
+        $('#login-host').val(
+            location.protocol + "//" + location.hostname + ":" + location.port + "/" + basePath
+        );
         $('#login-button').click(clickLogin);
         $('#login-adv').click(function () {
             $('#login .row.noadv').hide();
@@ -712,7 +718,8 @@ var ttPortal = {
         options = options || {};
         column = options.column || column;
         size = options.size || settings.defaultSize;
-        color = options.color || settings.colorClasses[Math.floor(Math.random() * settings.colorClasses.length)];
+        color = options.color ||
+                settings.colorClasses[Math.floor(Math.random() * settings.colorClasses.length)];
         widgetClass = options.type || settings.defaultWidgetClass;
 
         if ($('#' + id).length > 0) {
@@ -748,7 +755,10 @@ var ttPortal = {
 
             for (var i = 0; i < data.length; i++) {
                 if (widgets.indexOf(data[i].id) === -1) {
-                    es.push($("<option value='" + data[i].id + "'> " + data[i].title + " </option>").data(data[i]));
+                    es.push(
+                        $("<option value='" + data[i].id + "'> " + data[i].title + " </option>")
+                         .data(data[i])
+                    );
                 }
             }
 
