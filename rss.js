@@ -4,8 +4,19 @@ var ttRss = {
     base: null,
     session: null,
     categoryId: null,
-    errorHandler: function () {alert('Error during request');},
-    sessionErrorHandler: function () {alert('Error for session');},
+    errorHandler: (function () {
+        let alertShown = false;
+        return function () {
+            if (!alertShown) {
+                alertShown = true;
+                alert('Error during request');
+                alertShown = false;
+            }
+        };
+    })(),
+    sessionErrorHandler: function () {
+        alert('Error for session');
+    },
     _errorHandler: function (c, e, s) {
         var t = this,
             errorHandler = e || t.errorHandler,
