@@ -200,13 +200,32 @@ var ttPortal = {
                 widget = count.closest(settings.widgetSelector),
                 id = widget.attr('id'),
                 counter = widget.find('.counter'),
-                feedId = id.replace(settings.feedIdRe, "");
+                feedId = id.replace(settings.feedIdRe, ""),
+                countNumber = parseInt(counter.text(), 10),
+                unreadItems = widget.find('li.unread');
 
-            rss.markReadFeed(feedId, function () {
+            if (countNumber < 1) {
+                return false;
+            }
+
+            if (unreadItems.length === countNumber) {
+                // Mark items
+                const ids = unreadItems.find('a').map(function () {
+                    return this.id.replace(/^article-/, "");
+                }).get().join();
+                rss.markReadItem(ids, function () {
                     counter.text('0');
                     t.refreshCount();
-                    widget.find('li.unread').toggleClass('unread').toggleClass('read');
+                    unreadItems.toggleClass('unread').toggleClass('read');
                 });
+            } else {
+                // Mark the feed (we don't have id of every unread article)
+                rss.markReadFeed(feedId, function () {
+                        counter.text('0');
+                        t.refreshCount();
+                        unreadItems.toggleClass('unread').toggleClass('read');
+                    });
+            }
             return false;
         });
 
