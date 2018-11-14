@@ -50,10 +50,6 @@ a {color:white;}
 #addwidget {
 }
 
-/* Column dividers (background-images) : */
-#columns #column1 { background: url(img/column-bg-left.png) no-repeat right top; }
-#columns #column3 { background: url(img/column-bg-right.png) no-repeat left top; }
-
 .widget .widget-head {
     color: #000;
 }
