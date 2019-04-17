@@ -111,7 +111,7 @@ body {font-size:0.8em;}
 /* #columns #column1 .widget { margin: 30px 35px 0 25px; } */
 /* #columns #column3 .widget { margin: 30px 25px 0 35px; } */
 .widget {
-    margin: 30px 20px 0 20px;
+    margin: 1em 1em 0 1em;
     padding: 2px;
     border-radius: 4px;
 }
