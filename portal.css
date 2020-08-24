@@ -137,31 +137,18 @@ body {font-size:0.8em;}
     width: 160px;
 }
 
-
-.widget .widget-head {
-    overflow: hidden;
-    height: 30px;
-    line-height: 30px;
-}
  .widget .widget-head .count {
     padding: 0 1px;
     font-weight: bold;
     font-size: 0.9em;
     text-decoration: none;
-    vertical-align: top;
  }
 
- .widget .widget-head .counter {
-    vertical-align: top;
- }
- 
  .widget .widget-head .title {
-    padding: 0;
-    text-align: left;
     font-size: 1em;
     font-weight: bold;
-    vertical-align: top;
 }
+
 .widget .widget-content {
     padding: 0 5px;
     border-radius-bottomleft: 2px;
